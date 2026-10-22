@@ -9,60 +9,109 @@ a {
     color: inherit;
 }
 
+.font-inter {
+    font-family: "Inter", sans-serif;
+}
+
+.font-geologica {
+    font-family: "Geologica", sans-serif;
+}
+
+.font-im-fell-dw-pica {
+    font-family: "IM Fell DW Pica", serif;
+}
+
 header {
     height: 10vh;
     background-color: #EB6464;
     display: grid;
-    grid-template-columns: 6vw 34vw 50vw 10vw;
+    grid-template-columns: 6vw 40vw 40vw 14vw;
     align-items: center;
-    padding: 1vh;
-    z-index: 1;
-    position: relative;
+    padding: 0.5vh;
 
     img {
         width: 4vw;
     }
 
     a {
+        color: white;
         font-size: 2.5rem;
     }
 
-    a:not(:last-of-type) {
-        margin-right: 3vw;
+    #botoes {
+        div {
+            display: inline-flex;
+            margin-right: 3vw;
+        }
+
+        div:first-of-type {
+            background-color: #E92222;
+            margin-right: 3vw;
+            padding: 0 0.5vw 0 0.5vw;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        div:hover {
+            background-color: #E92222;
+            margin-right: 3vw;
+            padding: 0 0.5vw 0 0.5vw;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
     }
+
 
     #SearchBar {
+        height: 9vh;
+        display: grid;
+        align-items: center;
+        grid-template-rows: 1;
+        grid-template-columns: 20% 60% 20%;
+        
+
+
+
         #BarraDePesquisa {
             width: 15vw;
-            height: 3vh;
+            height: 4vh;
+            border-radius: 30px;
+            border: none;
+            grid-column: 2;
+            justify-self: right;
+            padding: 15px;
         }
+        #BarraDePesquisa::placeholder {
+            opacity: 0.4;
+            
+        }
+
 
         button {
-            display: inline-block;
-            width: 3vh;
-            height: 3vh;
+            width: 4.5vh;
+            height: 4.5vh;
+            border-radius: 100%;
+            border: none;
+            transition: 1s;
+            grid-column: 3;
+            margin-left: 0.5vw;
         }
 
-        img {
-            width: 3vw;
-            height: 3vh;
-        }
-    }
-
-    div:nth-of-type(2) {
-        a:first-of-type::before {
-            content: "";
-            position: absolute;
-            width: 2vw; 
-            height: 2vh;
-            background-color: white;
-            z-index: -1;
-            top: 1;
+        button:hover {
+            background-color: rgb(180, 180, 180);
+            transition: 0.5s;
         }
     }
 
-    div:last-of-type {
-        width: 4vw;
+    #enter {
+        display: flex;
+        background-color: #E92222;
+        width: 10vw;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 }
 
@@ -75,6 +124,51 @@ header {
 }
 
 #inside-main {
-    color: black;
-    font-size: 48px;
+    color: white;
+    text-align: center;
+
+    h3 {
+        font-size: 72px;
+    }
+
+    p {
+        font-size: 48px;
+        font-weight: 100;
+    }
+
+    #pedir-agora {
+        display: flex;
+        background-color: #F6670E;
+        width: 32vh;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-inline: auto;
+        height: 7vh;
+        text-align: center;
+        margin-top: 10px;
+        
+        a {
+            font-size: 48px;
+            margin: auto;
+            img {
+                width: 36px;
+                margin: auto;
+                text-align: center;
+            }
+        }
+    }
+
 }
+
+#main1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("imgs/FornoALenha.jpg");
+    background-size: 100%;
+    -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+    height: 100vh;
+}
+
