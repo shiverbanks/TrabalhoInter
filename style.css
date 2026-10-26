@@ -30,7 +30,8 @@ header {
     padding: 0.5vh;
 
     img {
-        width: 4vw;
+        width: 9vw;
+        height: 10vh;
     }
 
     a {
@@ -42,11 +43,13 @@ header {
         div {
             display: inline-flex;
             margin-right: 3vw;
+            transition: 1s ease-out;
         }
 
         div:first-of-type {
             background-color: #E92222;
             margin-right: 3vw;
+            margin-left: 3vw;
             padding: 0 0.5vw 0 0.5vw;
             justify-content: center;
             border-radius: 10px;
@@ -60,6 +63,7 @@ header {
             justify-content: center;
             border-radius: 10px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            transition: 0.5s ease-in;
         }
     }
 
@@ -73,7 +77,10 @@ header {
         
 
 
-
+        #Lupa{
+            height: 2vh;
+            width: 2vh;
+        }
         #BarraDePesquisa {
             width: 15vw;
             height: 4vh;
@@ -90,8 +97,8 @@ header {
 
 
         button {
-            width: 4.5vh;
-            height: 4.5vh;
+            width: 5vh;
+            height: 5vh;
             border-radius: 100%;
             border: none;
             transition: 1s;
@@ -102,6 +109,7 @@ header {
         button:hover {
             background-color: rgb(180, 180, 180);
             transition: 0.5s;
+            cursor: pointer;
         }
     }
 
@@ -129,6 +137,7 @@ header {
 
     h3 {
         font-size: 72px;
+        font-weight: 400;
     }
 
     p {
@@ -149,14 +158,20 @@ header {
         margin-top: 10px;
         
         a {
-            font-size: 48px;
+            font-size: 30px;
             margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 100;
             img {
-                width: 36px;
+                width: 40px;
                 margin: auto;
                 text-align: center;
+                
             }
         }
+
     }
 
 }
@@ -170,5 +185,4 @@ header {
     -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
     height: 100vh;
-}
-
+}   
