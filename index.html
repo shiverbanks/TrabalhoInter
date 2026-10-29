@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <title>Pizza Calda</title>
 </head>
 
@@ -33,15 +35,32 @@
 
         <!-- Search Bar -->
         <div id="SearchBar">
-            <input type="search" name="" id="BarraDePesquisa" placeholder="Pesquisar...">
-            <button type="submit" id="Enviar" ><img src="imgs/magnifying-glass.png" alt="" id="Lupa"></button>
+            <input type="search" name="" id="BarraDePesquisa" placeholder="Pesquisar..." class="font-inter">
+            <button type="submit" id="Enviar"><img src="imgs/magnifying-glass.png" alt="" id="Lupa"></button>
 
         </div>
 
         <!-- Botão de Entrar -->
         <div id="enter">
-            <a href=""  class="font-inter">Entrar</a>
+            <a href="" class="font-inter" id="entrar">Entrar</a>
         </div>
+
+        <!-- Login Box -->
+        <div id="loginbox" class="loginbox">
+            <form class="font-inter">
+                <label for="mail">Usuário</label>
+                <input name="mail" id="mail" type="email" placeholder="Seu nome de Usuário">
+
+                <label for="pass">Senha</label>
+                <input type="password" id="pass" name="pass" placeholder="Sua senha">
+
+                <input type="submit" value="Entrar" id="submeter">
+
+                <a href="">Esqueci minha senha</a>
+                <a href=""><span>Não está registrado?</span> Crie uma conta</a>
+            </form>
+        </div>
+
     </header>
     <main id="main1">
         <div id="inside-main">
@@ -50,11 +69,25 @@
             <div id="pedir-agora">
                 <a href="" class="font-geologica">
                     Pedir Agora
-                    <img src="imgs/arrow.png" alt="help a seta não aparece" class="icone">
+                    <img src="imgs/arrow.png" alt="help a seta não aparece (Easter Egg)" class="icone">
                 </a>
             </div>
         </div>
     </main>
+
+    <a href="#CarrinhoDeCompras">
+        <div id="carrinho"></div>
+    </a>
+
+    <section id="CarrinhoDeCompras">
+        <div>
+            <img src="imgs/" alt="">
+        </div>
+
+        
+    </section>
+
+    <script src="script.js"></script>
 </body>
-<!--  https://www.flaticon.com/free-icon/arrows_11399530  -->
+
 </html>
