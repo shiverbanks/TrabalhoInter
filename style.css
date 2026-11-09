@@ -4,6 +4,14 @@
     padding: 0;
 }
 
+
+
+
+#add_carrinho { 
+    display: flex;
+    align-items: center;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -79,13 +87,14 @@ header {
         align-items: center;
         grid-template-rows: 1;
         grid-template-columns: 20% 60% 20%;
-        
 
 
-        #Lupa{
+
+        #Lupa {
             height: 2vh;
             width: 2vh;
         }
+
         #BarraDePesquisa {
             width: 20vw;
             height: 4vh;
@@ -99,9 +108,10 @@ header {
             border-color: #CCCCCC;
             outline-width: 2px;
         }
+
         #BarraDePesquisa::placeholder {
             opacity: 0.4;
-            
+
         }
 
 
@@ -134,86 +144,172 @@ header {
         align-items: center;
         gap: 10px;
         line-height: 1.5;
-        }
+    }
+}
+
+#loginbox {
+    position: absolute;
+    width: 14vw;
+    height: 30vh;
+    z-index: 2;
+    background-color: white;
+    right: 1vw;
+    transition: 0.25s;
+    border-radius: 10px;
+    background-color: #EB6464;
+    padding: 1vw;
+    background-image:
+        linear-gradient(rgba(235, 100, 100, 0.9), rgba(235, 100, 100, 0.9)),
+        url('imgs/LogoPizzaCalda.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    label {
+        display: block;
+        font-size: 1.4em;
+        height: 3.5vh;
+        color: white;
     }
 
-    #loginbox {
-        position: absolute;
-        width: 14vw;
-        height: 30vh;
-        z-index: 2;
-        background-color: white;
-        right: 1vw;
-        transition: 0.5s;
+    input:not([type=submit]) {
+        width: 100%;
+        height: 2.5vh;
+        border-radius: 4px;
+        padding: 10px;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        outline: none;
+    }
+
+    input:focus {
+        border: none;
+    }
+
+    input[type=submit] {
+        margin-top: 2vh;
+        cursor: pointer;
+        display: flex;
+        background-color: #E82323;
         border-radius: 10px;
-        background-color: #EB6464;
-        padding: 1vw;
-        background-image: 
-            linear-gradient(rgba(235, 100, 100, 0.9), rgba(235, 100, 100, 0.9)),
-            url('imgs/LogoPizzaCalda.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
+        width: 100%;
+        height: 3vh;
+        border: none;
+        color: white;
+        font-size: 1.25em;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-        label {
-            display: block;
-            font-size: 1.4em;
-            height: 3.5vh;
-            color: white;
-        }
-
-        input:not([type=submit]) {
-            width: 100%;
-            height: 2.5vh;
-            border-radius: 4px;
-            padding: 10px;
-            border: none;
-            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-            outline: none;
-        }
-        input:focus{
-            border: none;
-        }
-
-        input[type=submit]{
-            margin-top: 2vh;
-            cursor: pointer;
-            display: flex;
-            background-color: #E82323;
-            border-radius: 10px;
-            width: 100%;
-            height: 3vh;
-            border: none;
-            color: white;
-            font-size: 1.25em;
-            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-            
-        }
-        input[type=submit]:hover{
-            background-color: #cc1c1c;
-        }
-
-        a{
-            font-size: 0.8em;
-            text-align: center;
-            display: block;
-            margin-top: 2%;
-        }
-        a:hover {
-            color: rgb(216, 216, 216);
-        }
-
-        span{
-            color: rgb(233, 233, 233);
-        }
     }
 
-    .loginbox { top: -800vw;}
+    input[type=submit]:hover {
+        background-color: #cc1c1c;
+    }
+
+    a {
+        font-size: 0.8em;
+        text-align: center;
+        display: block;
+        margin-top: 2%;
+    }
+
+    a:hover {
+        color: rgb(216, 216, 216);
+    }
+
+    span {
+        color: rgb(233, 233, 233);
+    }
+}
+
+.loginbox {
+    top: -800vw;
+}
 
 .descer {
     top: 16vh;
 }
 
+#register {
+    position: absolute;
+    width: 14vw;
+    height: 55vh;
+    z-index: 2;
+    background-color: white;
+    right: 1vw;
+    transition: 0.25s;
+    border-radius: 10px;
+    background-color: #EB6464;
+    padding: 1vw;
+    background-image:
+        linear-gradient(rgba(235, 100, 100, 0.9), rgba(235, 100, 100, 0.9)),
+        url('imgs/LogoPizzaCalda.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    label {
+        display: block;
+        font-size: 1.4em;
+        height: 3.5vh;
+        color: white;
+    }
+
+    input:not([type=submit]) {
+        width: 100%;
+        height: 2.5vh;
+        border-radius: 4px;
+        padding: 10px;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        outline: none;
+    }
+
+    input:focus {
+        border: none;
+    }
+
+    input[type=submit] {
+        margin-top: 2vh;
+        cursor: pointer;
+        display: flex;
+        background-color: #E82323;
+        border-radius: 10px;
+        width: 100%;
+        height: 3vh;
+        border: none;
+        color: white;
+        font-size: 1.25em;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+    }
+
+    input[type=submit]:hover {
+        background-color: #cc1c1c;
+    }
+
+    a {
+        font-size: 0.8em;
+        text-align: center;
+        display: block;
+        margin-top: 2%;
+    }
+
+    a:hover {
+        color: rgb(216, 216, 216);
+    }
+
+    span {
+        color: rgb(233, 233, 233);
+    }
+}
+
+.register {
+    top: -800vw;
+}
+
+.descer {
+    top: 16vh;
+}
 
 .banner {
     width: 100%;
@@ -248,7 +344,7 @@ header {
         height: 7vh;
         text-align: center;
         margin-top: 10px;
-        
+
         a {
             font-size: 30px;
             margin: auto;
@@ -257,20 +353,21 @@ header {
             gap: 10px;
             font-weight: 100;
         }
+        a:hover .icone_two {
+            transition: 0.25s ease-in-out;
+            height: 42.5px;
+            width: 42.5px;
+        }
 
     }
-    .icone {
+
+    .icone_two {
         width: 40px;
         margin: auto;
         text-align: center;
         height: 40px;
-        transition: width 2s ease-in-out; /* preciso de ajuda para animar a seta para mover para frente ao passar o mouse. transição atual é um placeholder */
-    }
-
-    .icone:hover {
-        transition: width 2s ease-in-out; /* preciso de ajuda para animar a seta para mover para frente ao passar o mouse. transição atual é um placeholder */
-        width: 100px;
-        
+        transition: widht 0.25s ease-in-out;
+         /* preciso de ajuda para animar a seta para mover para frente ao passar o mouse. transição atual é um placeholder */
     }
 }
 
@@ -284,13 +381,13 @@ header {
     -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
     height: 100vh;
-}   
+}
 
 input[type="text"]:focus {
     outline: none;
 }
 
-#carrinho{
+#carrinho {
     position: fixed;
     background-color: #e27629;
     height: 10vh;
@@ -299,32 +396,72 @@ input[type="text"]:focus {
     bottom: 2vh;
     border-radius: 100%;
     background-image: url(imgs/shopping-cart.png);
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;
     background-size: 6vh;
-    background-position: center;   
-    transition: 0.3s    ease-out;
+    background-position: center;
+    transition: 0.3s ease-out;
 }
-#carrinho:hover{
+
+#carrinho:hover {
     height: 12vh;
     width: 6vw;
     transition: 0.2s ease;
     background-size: 8vh;
     cursor: pointer;
 }
-#CarrinhoDeCompras{
-background-color: #fbcaca;
-height: 100vh;
-width: 15vw;
-position: fixed;
-right: -15vw;
-bottom: 0;
-z-index: 100;
 
+#CarrinhoDeCompras {
+    background-color: #fbcaca;
+    height: 100vh;
+    width: 20vw;
+    position: fixed;
+    right: -20vw;
+    bottom: 0;
+    z-index: 100;
+    border-radius: 10px 0 0 10px;
+    display: grid;
+    grid-template-rows: 10% 60% 30%;
+    
+    #Fechar{
+        width: 1.4vw;
+        position: relative;
+        left: 0.7vw;
+        top: 0.7vw;
+        margin: 0 0 3vh;
+        grid-row: 1;
+    }
+    
+    
+    #carCom{
+        overflow-y: scroll;
+        
+        display: inline-block;
+        flex-direction: column;
+        justify-content: center;
+        grid-row: 2;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    #total{
+        position: absolute;
+        grid-row: 3;
+
+    }
+    #seila{
+        grid-row: 1;
+    }
 }
 
-#CarrinhoDeCompras:target{
+#CarrinhoDeCompras:target {
     right: 0;
     transition: 0.5s;
+}
+
+.ProdutoCarrinho{
+    background-color: black;
+    width: 80%;
+    height: 20%;
 }
 
 .especiais_small {
@@ -337,6 +474,7 @@ z-index: 100;
         margin-left: 2.5%;
         font-size: 36px;
     }
+
     hr {
         width: 95%;
         margin: auto;
@@ -347,10 +485,12 @@ z-index: 100;
         border-style: none;
         margin-top: -15px;
     }
+
     a {
         font-size: 20px;
         margin-top: 20px;
     }
+
     .especiais_options {
         padding-top: 2vh;
         width: 95%;
@@ -365,7 +505,7 @@ z-index: 100;
     .a_opcao {
         background-color: #D9D9D9;
         border-radius: 10px;
-        padding:2vh;
+        padding: 2vh;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 8px 8px;
     }
 
@@ -378,10 +518,12 @@ z-index: 100;
         height: 18vh;
         border-radius: 8px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 8px 8px;
+
         .foto_pizza {
             margin: 5px;
         }
     }
+
     .nome_pizza {
         font-style: italic;
         font-size: 40px;
@@ -389,6 +531,7 @@ z-index: 100;
         display: inline-block;
         margin-top: -10px;
     }
+
     .linha_vermelha_pequena {
         width: 75%;
         margin: auto;
@@ -399,14 +542,16 @@ z-index: 100;
         border-style: none;
         margin-top: -25px;
     }
+
     .tamanho_e_preco_pizza {
         font-style: italic;
-        font-size: 24px; 
+        font-size: 24px;
         color: #636363;
         width: 75%;
         margin: auto;
         margin-top: -7px;
     }
+
     .button_adicionar_carrinho {
         display: flex;
         background-color: #E92222;
@@ -420,12 +565,226 @@ z-index: 100;
         align-items: center;
         gap: 10px;
         line-height: 2;
+
         a {
             margin: auto;
             height: 40px;
+
             img {
                 height: 24px;
             }
         }
+    }
+}
+
+#linha_baixo {
+    margin-top: 30px;
+    margin-bottom: 75px;
+}
+
+#especiais_da_semana{
+    .center_screen {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .option_lustosini {
+        
+        padding: 1vh;
+        display: flex;
+        height: 35vh;
+        margin-left: 100px;
+    }
+    .thing_idk_name {
+        width: 45%;
+        margin-left: 30px;
+    }
+    .especiais_do_lustosini {
+        padding: 50px;
+        display: grid;
+        grid-template-columns: repeat(2, 750px);
+        grid-template-rows: 300px;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+    .pizza_foto_container {
+        width: 31vh;
+        background-color: #D9D9D9;
+        
+        justify-content: center;
+        height: 31vh;
+        border-radius: 25px;
+        
+
+        .foto_pizza {
+            margin: 5px;
+        }
+    }
+    .nome_pizza {
+        font-size: 40px;
+        text-align: center;
+        display: inline-block;
+        margin-top: -10px;
+        font-weight: 400;
+    }
+    .descricao_pizza {
+        color: #686868;
+        line-height: 1.6;
+    }
+    .button_adicionar_carrinho {
+        margin-top: 10px;
+        display: flex;
+        background-color: #E92222;
+        color: white;
+        font-weight: 300;
+        width: 12.5vw;
+        justify-content: center;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        align-items: center;
+        gap: 10px;
+        line-height: 2;
+
+        a {
+            margin: auto;
+            height: 40px;
+            font-size: 18px;
+            img {
+                height: 24px;
+            }
+        }
+    }
+}
+
+#carrinho{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.card-carrinho{
+    font-family: "Inter", sans-serif; 
+    display:flex;
+    align-items:center;
+    align-self: center;
+    margin-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px;
+
+    border-radius:6px;
+    background-color: #fa7f7f;
+
+    padding:1vw;
+    width:18vw;
+}
+
+.card-carrinho img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+}
+
+.info{
+    flex:1;
+}
+
+.quantidade{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+}
+
+.quantidade button{
+    width:30px;
+    height:30px;
+    cursor:pointer;
+}
+
+footer {
+    background-color: #404040;
+    padding: 15px;
+    display: flex;
+    #logo_footer {
+        width: 83px;
+    }
+    #copyright {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 20px;
+        color: white;
+        font-weight: 100;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    header {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 10px;
+        text-align: center;
+    }
+
+    header img {
+        width: 60px;
+        height: 60px;
+        margin: auto;
+    }
+
+    #SearchBar {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    #BarraDePesquisa {
+        width: 90% !important;
+        justify-self: center !important;
+    }
+
+    #enter {
+        width: 90%;
+        margin: auto;
+    }
+
+    #botoes div,
+    #botoes div:first-of-type {
+        margin: 5px;
+    }
+
+    #inside-main h3 {
+        font-size: 40px;
+    }
+
+    #inside-main p {
+        font-size: 24px;
+    }
+
+    #pedir-agora {
+        width: 90%;
+    }
+
+    .especiais_small .especiais_options {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .button_adicionar_carrinho {
+        width: 100%;
+    }
+
+    #CarrinhoDeCompras {
+        width: 100vw;
+        right: -100vw;
+    }
+
+    #CarrinhoDeCompras:target {
+        right: 0;
+    }
+
+    #carrinho {
+        width: 70px;
+        height: 70px;
     }
 }
