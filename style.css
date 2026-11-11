@@ -1061,3 +1061,31 @@ footer {
     }
 
 }
+
+#botoes_catalogo {
+    grid-area: nav;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+
+    div {
+        display: inline-flex;
+        padding: 0 0.75rem;
+        justify-content: center;
+        transition: 1s ease-out;
+        line-height: 1.5;
+        border-radius: 15px;
+    }
+
+    div:last-of-type {
+        background-color: #E92222;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    div:hover {
+        background-color: #E92222;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: 0.5s ease-in;
+    }
+}

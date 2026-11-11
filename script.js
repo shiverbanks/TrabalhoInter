@@ -1,21 +1,31 @@
 const login = document.getElementById("loginbox")
 const register = document.getElementById("register")
+var tela = true
 
 document.querySelector("#entrar").addEventListener("click", (event) => {
     event.preventDefault();
-    login.classList.toggle("descer")
+    console.log(tela);
+    if(tela === true){
+        login.classList.toggle("descer");
+    }
+    else if (tela === false){
+        register.classList.toggle("descer");
+        tela = true;
+    }
 });
 
 document.querySelector("#reg").addEventListener("click", (event) => {
     event.preventDefault();
     login.classList.toggle("descer")
     register.classList.toggle("descer")
+    tela = false;
 });
 
 document.querySelector("#login").addEventListener("click", (event) => {
     event.preventDefault();
     login.classList.toggle("descer")
     register.classList.toggle("descer")
+    tela = true;
 });
 
 function maskCpf(){
@@ -328,124 +338,4 @@ function mostrarAviso(texto) {
         aviso.classList.add("saindo");
         aviso.addEventListener("animationend", () => aviso.remove());
     }, 2500);
-}
-
-
-const registerForm = document.getElementById("registerForm");
-const loginForm = document.getElementById("loginForm");
-
-registerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const usuario = {
-        email: document.getElementById("registerMail").value,
-        senha: document.getElementById("registerPass").value,
-        cpf: document.getElementById("cpf").value,
-        telefone: document.getElementById("tel").value,
-        endereco: document.getElementById("end").value,
-        cep: document.getElementById("cep").value
-    };
-
-    localStorage.setItem("usuario", JSON.stringify(usuario));
-
-    register.classList.toggle("descer");
-    localStorage.setItem("logado", "true");
-
-    baixarJson();
-
-    alert("Cadastro realizado!");
-});
-
-
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("loginMail").value;
-    const senha = document.getElementById("loginPass").value;
-
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
-
-    if (
-        usuario &&
-        usuario.email === email &&
-        usuario.senha === senha
-    ) {
-
-        localStorage.setItem("logado", "true");
-
-        login.classList.toggle("descer");
-
-        mostrarPerfil();
-
-        alert("Login realizado!");
-
-    } else {
-
-        alert("Email ou senha incorretos!");
-
-    }
-});
-
-function mostrarPerfil() {
-
-    const enter = document.getElementById("enter");
-
-    enter.innerHTML = `
-        <img
-            src="img/profile.png"
-            alt="Perfil"
-            id="profile"
-            style="width:45px;height:45px;border-radius:50%;cursor:pointer;"
-        >
-    `;
-
-    document
-        .getElementById("profile")
-        .addEventListener("click", logout);
-}
-
-window.addEventListener("load", () => {
-
-    if(localStorage.getItem("logado") === "true"){
-        mostrarPerfil();
-    }
-
-});
-
-function logout(){
-
-    localStorage.removeItem("logado");
-
-    document.getElementById("enter").innerHTML = `
-        <a href="" class="font-inter" id="entrar">Entrar</a>
-    `;
-}
-
-function baixarJson() {
-
-    const usuario = localStorage.getItem("usuario");
-
-    if (!usuario) {
-        alert("Nenhum usuário cadastrado.");
-        return;
-    }
-
-    const blob = new Blob([usuario], {
-        type: "application/json"
-    });
-
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-
-    a.href = url;
-    a.download = "usuario.json";
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    document.body.removeChild(a);
-
-    URL.revokeObjectURL(url);
 }
