@@ -40,9 +40,11 @@
 
         <!-- Search Bar -->
         <div id="SearchBar">
-            <input type="search" name="" id="BarraDePesquisa" placeholder="Pesquisar..." class="font-inter">
-            <button type="submit" id="Enviar"><img src="imgs/magnifying-glass.png" alt="" id="Lupa"></button>
-
+            <input type="search" id="BarraDePesquisa" placeholder="Pesquisar sabor..." autocomplete="off">
+            <button type="button" id="btnBuscar">
+                <img id="Lupa" src="imgs/magnifying-glass.png" alt="Buscar">
+            </button>
+            <div id="resultadosPesquisa" class="resultados-dropdown"></div>
         </div>
 
         <!-- Botão de Entrar -->
@@ -53,21 +55,21 @@
         <!-- Login Box -->
         <div id="loginbox" class="loginbox">
             <form class="font-inter" id="loginForm">
-        
+
                 <label for="loginMail">Email</label>
                 <input name="mail" id="loginMail" type="email" placeholder="Seu email" required>
-        
+
                 <label for="loginPass">Senha</label>
                 <input type="password" id="loginPass" name="pass" placeholder="Sua senha" required>
-        
+
                 <input type="submit" value="Entrar" id="loginSubmit">
-        
+
                 <a href="">Esqueci minha senha</a>
-        
+
                 <a id="reg" href="">
                     <span>Não está registrado?</span> Crie uma conta
                 </a>
-        
+
             </form>
         </div>
 
@@ -76,30 +78,30 @@
             <form class="font-inter" id="registerForm">
                 <label for="registerMail">Email</label>
                 <input name="mail" id="registerMail" type="email" placeholder="Seu email" required>
-        
+
                 <label for="registerPass">Senha</label>
                 <input type="password" id="registerPass" name="pass" placeholder="Sua senha" required>
-        
+
                 <label for="cpf">CPF</label>
                 <input name="cpf" id="cpf" type="text" placeholder="Seu CPF" oninput="maskCpf()" required>
-        
+
                 <label for="tel">Telefone</label>
-                <input name="tel" id="tel" type="tel" placeholder="Seu telefone" oninput="maskTel()" required >
-         
+                <input name="tel" id="tel" type="tel" placeholder="Seu telefone" oninput="maskTel()" required>
+
                 <label for="end">Endereço</label>
                 <input name="end" id="end" type="text" placeholder="Seu endereço" required>
-        
+
                 <label for="cep">Cep</label>
                 <input name="cep" id="cep" type="text" placeholder="Seu CEP" oninput="maskCep()" required>
-        
+
                 <input type="submit" value="Cadastrar" id="registerSubmit">
-        
+
                 <a id="login" href="">
                     <span>Já possui conta?</span> Logar
                 </a>
             </form>
         </div>
-        
+
 
     </header>
     <main id="main1">
@@ -127,8 +129,8 @@
                 <hr class="linha_vermelha_pequena">
                 <h1 class="tamanho_e_preco_pizza font-inter">Média<span>R$64,90</span></h1>
                 <div class="button_adicionar_carrinho">
-                    <a onclick="adicionarProduto('Mussarela', 64.90, 'imgs/PizzaMussarela.png', 1, `Médio`)"
-                        href="" class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
+                    <a onclick="adicionarProduto('Mussarela', 64.90, 'imgs/PizzaMussarela.png', 1, `Média`)" href=""
+                        class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
                             alt="ícone sacola" class="icone"></a>
                 </div>
             </div>
@@ -139,10 +141,10 @@
                 </div>
                 <h1 class="nome_pizza font-inter">Marguerita</h1>
                 <hr class="linha_vermelha_pequena">
-                <h1 class="tamanho_e_preco_pizza font-inter">Média<span>R$86,90</span></h1>
+                <h1 class="tamanho_e_preco_pizza font-inter">Grande<span>R$86,90</span></h1>
                 <div class="button_adicionar_carrinho">
-                    <a onclick="adicionarProduto('Marguerita', 86.90, 'imgs/PizzaMarguerita.png', 2, `Médio`)"
-                        href="" class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
+                    <a onclick="adicionarProduto('Marguerita', 86.90, 'imgs/PizzaMarguerita.png', 2, `Grande`)" href=""
+                        class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
                             alt="ícone sacola" class="icone"></a>
                 </div>
             </div>
@@ -153,10 +155,10 @@
                 </div>
                 <h1 class="nome_pizza font-inter">Portuguesa</h1>
                 <hr class="linha_vermelha_pequena">
-                <h1 class="tamanho_e_preco_pizza font-inter">Grande<span>R$68,90</span></h1>
+                <h1 class="tamanho_e_preco_pizza font-inter">Média<span>R$68,90</span></h1>
                 <div class="button_adicionar_carrinho">
-                    <a onclick="adicionarProduto('Portuguesa', 68.90, 'imgs/PizzaPortuguesa.png', 3, `Grande`)"
-                        href="" class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
+                    <a onclick="adicionarProduto('Portuguesa', 68.90, 'imgs/PizzaPortuguesa.png', 3, `Média`)" href=""
+                        class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
                             alt="ícone sacola" class="icone"></a>
                 </div>
             </div>
@@ -169,8 +171,8 @@
                 <hr class="linha_vermelha_pequena">
                 <h1 class="tamanho_e_preco_pizza font-inter">Média<span>R$66,90</span></h1>
                 <div class="button_adicionar_carrinho">
-                    <a onclick="adicionarProduto('Presunto', 66.90, 'imgs/PizzaPresunto.png', 4, `Médio`)"
-                        href="" class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
+                    <a onclick="adicionarProduto('Presunto', 66.90, 'imgs/PizzaPresunto.png', 4, `Média`)" href=""
+                        class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
                             alt="ícone sacola" class="icone"></a>
                 </div>
             </div>
@@ -181,9 +183,9 @@
                 </div>
                 <h1 class="nome_pizza font-inter">Frango</h1>
                 <hr class="linha_vermelha_pequena">
-                <h1 class="tamanho_e_preco_pizza font-inter">Média<span>R$45,90</span></h1>
+                <h1 class="tamanho_e_preco_pizza font-inter">Pequena<span>R$45,90</span></h1>
                 <div class="button_adicionar_carrinho">
-                    <a onclick="adicionarProduto('Frango', 45.90, 'imgs/PizzaFrango.png', 5, `Médio`)" href=""
+                    <a onclick="adicionarProduto('Frango', 45.90, 'imgs/PizzaFrango.png', 5, `Pequena`)" href=""
                         class="font-inter" id="add_carrinho">Adicionar ao Carrinho <img src="imgs/sacola.png"
                             alt="ícone sacola" class="icone"></a>
                 </div>
@@ -304,6 +306,21 @@
                 <button type="submit" class="tamanho-confirmar">Adicionar ao Carrinho</button>
             </div>
         </form>
+    </dialog>
+
+    <dialog id="modalPedidos" class="tamanho-dialog modal-pedidos">
+        <div class="modal-pedidos-header">
+            <h3>Meus Pedidos</h3>
+            <button type="button" id="fecharPedidos" class="btn-fechar-modal" onclick="document.getElementById('modalPedidos').close()">✕</button>
+        </div>
+        <p class="tamanho-subtitulo" id="usuarioLogadoInfo"></p>
+        
+        <div id="listaPedidos" class="lista-pedidos"></div>
+    
+        <div class="tamanho-acoes">
+            <button type="button" id="btnSairConta" class="tamanho-cancelar" onclick="localStorage.setItem('logado', 'false'); location.reload();">Sair da Conta</button>
+            <button type="button" id="btnFecharPedidos" class="tamanho-confirmar" onclick="document.getElementById('modalPedidos').close()">Fechar</button>
+        </div>
     </dialog>
 
 
