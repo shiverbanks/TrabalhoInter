@@ -29,94 +29,94 @@ document.querySelector("#login").addEventListener("click", (event) => {
 });
 
 function maskCpf() {
-    var cpf = document.getElementById("cpf").value
-    cpf = cpf.slice(0, 14)
-    document.getElementById("cpf").value = cpf
+    var cpf = document.getElementById("cpf").value;
+    cpf = cpf.slice(0, 14);
+    document.getElementById("cpf").value = cpf;
 
-    if (cpf != ".") {
-        if (cpf != undefined) {
-            cpf = cpf.slice(0, 3) + "." + cpf
-            document.getElementById("cpf").value = cpf
+    if (cpf[3] != ".") {
+        if (cpf[3] != undefined) {
+            cpf = cpf.slice(0, 3) + "." + cpf.slice(3);
+            document.getElementById("cpf").value = cpf;
         }
     }
-    if (cpf != ".") {
-        if (cpf != undefined) {
-            cpf = cpf.slice(0, 7) + "." + cpf
-            document.getElementById("cpf").value = cpf
+    if (cpf[7] != ".") {
+        if (cpf[7] != undefined) {
+            cpf = cpf.slice(0, 7) + "." + cpf.slice(7);
+            document.getElementById("cpf").value = cpf;
         }
     }
-    if (cpf != "-") {
-        if (cpf != undefined) {
-            cpf = cpf.slice(0, 11) + "-" + cpf
-            document.getElementById("cpf").value = cpf
+    if (cpf[11] != "-") {
+        if (cpf[11] != undefined) {
+            cpf = cpf.slice(0, 11) + "-" + cpf.slice(11);
+            document.getElementById("cpf").value = cpf;
         }
     }
 }
 
 function maskTel() {
-    var tel = document.getElementById("tel").value
-    tel = tel.slice(0, 20)
-    document.getElementById("tel").value = tel
+    var tel = document.getElementById("tel").value;
+    tel = tel.slice(0, 20);
+    document.getElementById("tel").value = tel;
 
-    if (tel != "+") {
-        if (tel != undefined) {
-            tel = "+" + tel
-            document.getElementById("tel").value = tel
+    if (tel[0] != "+") {
+        if (tel[0] != undefined) {
+            tel = "+" + tel;
+            document.getElementById("tel").value = tel;
         }
     }
-    if (tel != " ") {
-        if (tel != undefined) {
-            tel = tel.slice(0, 3) + " " + tel
-            document.getElementById("tel").value = tel
+    if (tel[3] != " ") {
+        if (tel[3] != undefined) {
+            tel = tel.slice(0, 3) + " " + tel.slice(3);
+            document.getElementById("tel").value = tel;
         }
     }
-    if (tel != "(") {
-        if (tel != undefined) {
-            tel = tel.slice(0, 4) + "(" + tel
-            document.getElementById("tel").value = tel
+    if (tel[4] != "(") {
+        if (tel[4] != undefined) {
+            tel = tel.slice(0, 4) + "(" + tel.slice(4);
+            document.getElementById("tel").value = tel;
         }
     }
-    if (tel != ")") {
-        if (tel != undefined) {
-            tel = tel.slice(0, 7) + ")" + tel
-            document.getElementById("tel").value = tel
+    if (tel[7] != ")") {
+        if (tel[7] != undefined) {
+            tel = tel.slice(0, 7) + ")" + tel.slice(7);
+            document.getElementById("tel").value = tel;
         }
     }
-    if (tel != " ") {
-        if (tel != undefined) {
-            tel = tel.slice(0, 8) + " " + tel
-            document.getElementById("tel").value = tel
+    if (tel[8] != " ") {
+        if (tel[8] != undefined) {
+            tel = tel.slice(0, 8) + " " + tel.slice(8);
+            document.getElementById("tel").value = tel;
         }
     }
-    if (tel != " ") {
-        if (tel != undefined) {
-            tel = tel.slice(0, 10) + " " + tel
-            document.getElementById("tel").value = tel
+    if (tel[10] != " ") {
+        if (tel[10] != undefined) {
+            tel = tel.slice(0, 10) + " " + tel.slice(10);
+            document.getElementById("tel").value = tel;
         }
     }
-    if (tel != "-") {
-        if (tel != undefined) {
-            tel = tel.slice(0, 15) + "-" + tel
-            document.getElementById("tel").value = tel
+    if (tel[15] != "-") {
+        if (tel[15] != undefined) {
+            tel = tel.slice(0, 15) + "-" + tel.slice(15);
+            document.getElementById("tel").value = tel;
         }
     }
 }
 
 function maskCep() {
-    var cep = document.getElementById("cep").value
-    cep = cep.slice(0, 11)
-    document.getElementById("cep").value = cep
+    var cep = document.getElementById("cep").value;
+    cep = cep.slice(0, 10);
+    document.getElementById("cep").value = cep;
 
-    if (cep != ".") {
-        if (cep != undefined) {
-            cep = cep.slice(0, 2) + "." + cep
-            document.getElementById("cep").value = cep
+    if (cep[2] != ".") {
+        if (cep[2] != undefined) {
+            cep = cep.slice(0, 2) + "." + cep.slice(2);
+            document.getElementById("cep").value = cep;
         }
     }
-    if (cep != "-") {
-        if (cep != undefined) {
-            cep = cep.slice(0, 6) + "-" + cep
-            document.getElementById("cep").value = cep
+    if (cep[6] != "-") {
+        if (cep[6] != undefined) {
+            cep = cep.slice(0, 6) + "-" + cep.slice(6);
+            document.getElementById("cep").value = cep;
         }
     }
 }
@@ -228,7 +228,12 @@ function abrirTamanho(event, idDialog) {
 }
 
 document.querySelectorAll("dialog.tamanho-dialog").forEach(dialogo => {
+    dialogo.addEventListener("click", evento => {
+        if (evento.target === dialogo) dialogo.close();
+    });
+
     const form = dialogo.querySelector("form");
+    if (!form) return;
 
     form.addEventListener("submit", evento => {
         evento.preventDefault();
@@ -249,11 +254,7 @@ document.querySelectorAll("dialog.tamanho-dialog").forEach(dialogo => {
     });
 
     dialogo.querySelector(".tamanho-cancelar")
-        .addEventListener("click", () => dialogo.close());
-
-    dialogo.addEventListener("click", evento => {
-        if (evento.target === dialogo) dialogo.close();
-    });
+        ?.addEventListener("click", () => dialogo.close());
 });
 
 
@@ -384,18 +385,33 @@ document.querySelector("#registerSubmit").addEventListener("click", (event) => {
 document.querySelector("#loginSubmit").addEventListener("click", (event) => {
     event.preventDefault();
 
-    if (document.querySelector("#loginMail").value === localStorage.getItem("email") && document.querySelector("#loginPass").value === localStorage.getItem("senha")) {
+    const emailDigitado = document.querySelector("#loginMail").value.trim();
+    const senhaDigitada = document.querySelector("#loginPass").value;
+
+    const emailSalvo = localStorage.getItem("email");
+    const senhaSalva = localStorage.getItem("senha");
+
+    if (!emailSalvo) {
+        alert("Nenhuma conta encontrada. Crie uma conta primeiro!");
+        return;
+    }
+
+    if (emailDigitado === emailSalvo && senhaDigitada === senhaSalva) {
         localStorage.setItem("logado", "true");
         perfil();
-        login.classList.toggle("descer");
+        login.classList.remove("descer");
+    } else {
+        alert("Email ou senha incorretos.");
     }
 });
 
 function perfil() {
-    if (localStorage.getItem("logado") === "true") {
+    const enter = document.getElementById("enter");
+    if (enter && localStorage.getItem("logado") === "true") {
         enter.innerHTML = `
-            <img src="imgs/profile.png" alt="Perfil" id="perfil">
+            <img src="imgs/profile.png" alt="Perfil" id="perfil" style="cursor: pointer;">
         `;
+        document.getElementById("perfil").addEventListener("click", abrirHistoricoPedidos);
     }
 }
 
@@ -640,4 +656,22 @@ document.addEventListener("DOMContentLoaded", () => {
             boxResultados.classList.remove("ativo");
         }
     });
+});
+
+document.getElementById("enbutton").addEventListener("click", (event) => {
+    event.preventDefault();
+
+    if (localStorage.getItem("logado") !== "true") {
+        alert("Faça login ou crie uma conta para se tornar entregador.");
+        return;
+    }
+
+    const dadosEntregador = {
+        id_cliente: localStorage.getItem("id_cliente"),
+        email: localStorage.getItem("email"),
+        telefone: localStorage.getItem("telefone")
+    };
+
+    baixarJSON(dadosEntregador, `entregador-${dadosEntregador.id_cliente}.json`);
+    mostrarAviso("Solicitação de entregador enviada!");
 });
