@@ -10,22 +10,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
     <title>Pizza Calda</title>
+    <link rel="icon" type="image/png" href="imgs/LogoPizzaCalda.png">
 </head>
 
 <body>
     <header>
-        <!-- DIV com Logo da Pizza Calda -->
         <div>
             <img src="imgs/LogoPizzaCalda.png" alt="Logo Pizza Calda">
         </div>
 
-        <!-- DIV com os Botões -->
         <div id="botoes">
             <div>
                 <a href="" class="font-inter">Início</a>
@@ -38,7 +32,6 @@
             </div>
         </div>
 
-        <!-- Search Bar -->
         <div id="SearchBar">
             <input type="search" id="BarraDePesquisa" placeholder="Pesquisar sabor..." autocomplete="off">
             <button type="button" id="btnBuscar">
@@ -47,15 +40,15 @@
             <div id="resultadosPesquisa" class="resultados-dropdown"></div>
         </div>
 
-        <!-- Botão de Entrar -->
-        <div id="enter">
-            <a href="" class="font-inter" id="entrar">Entrar</a>
+        <div class="acoes-header">
+            <button type="button" id="btnTema" aria-label="Alternar tema claro e escuro" title="Alternar tema">🌙</button>
+            <div id="enter">
+                <a href="" class="font-inter" id="entrar">Entrar</a>
+            </div>
         </div>
 
-        <!-- Login Box -->
         <div id="loginbox" class="loginbox">
             <form class="font-inter" id="loginForm">
-
                 <label for="loginMail">Email</label>
                 <input name="mail" id="loginMail" type="email" placeholder="Seu email" required>
 
@@ -69,11 +62,9 @@
                 <a id="reg" href="">
                     <span>Não está registrado?</span> Crie uma conta
                 </a>
-
             </form>
         </div>
 
-        <!-- Register Box -->
         <div id="register" class="register">
             <form class="font-inter" id="registerForm">
                 <label for="registerMail">Email</label>
@@ -101,9 +92,8 @@
                 </a>
             </form>
         </div>
-
-
     </header>
+
     <main id="main1">
         <div id="inside-main">
             <h3 class="font-geologica">Pizza Calda</h3>
@@ -116,6 +106,7 @@
             </div>
         </div>
     </main>
+
     <section class="especiais_small" id="especial1">
         <h1 class="font-inter">Especiais da Semana<a href="">Ver mais</a></h1>
         <hr>
@@ -193,8 +184,9 @@
         </div>
         <hr id="linha_baixo">
     </section>
+
     <section id="especiais_da_semana">
-        <h1 class="font-im-fell-dw-pica center_screen">Especiais da Semana <!-- do 𝓛𝓾𝓼𝓽𝓸𝓼𝓲𝓷𝓲 --></h1>
+        <h1 class="font-im-fell-dw-pica center_screen">Especiais da Semana</h1>
         <div class="especiais_do_lustosini">
             <div class="option_lustosini">
                 <div class="pizza_foto_container">
@@ -210,7 +202,6 @@
                             id="add_carrinho">
                             Adicionar ao Carrinho <img src="imgs/sacola.png" alt="ícone sacola" class="icone">
                         </a>
-
                     </div>
                 </div>
             </div>
@@ -232,6 +223,7 @@
             </div>
         </div>
     </section>
+
     <footer>
         <img src="imgs/LogoPizzaCalda.png" id="logo_footer">
         <p id="copyright" class="font-im-fell-dw-pica">© Copyright - 2026 - Pizza Calda</p>
@@ -277,12 +269,11 @@
         </form>
     </dialog>
 
-
     <dialog id="CarneTamanho" class="tamanho-dialog font-inter" data-id="7" data-nome="Carne"
         data-imagem="imgs/PizzaCarne.png" aria-labelledby="CarneTitulo">
         <form>
             <h3 id="CarneTitulo">Escolha o tamanho</h3>
-            <p class="tamanho-subtitulo">Pizza de Pepperoni</p>
+            <p class="tamanho-subtitulo">Pizza de Carne</p>
 
             <fieldset>
                 <legend class="sr-only">Tamanho da pizza</legend>
@@ -316,18 +307,17 @@
     <dialog id="modalPedidos" class="tamanho-dialog modal-pedidos">
         <div class="modal-pedidos-header">
             <h3>Meus Pedidos</h3>
-            <button type="button" id="fecharPedidos" class="btn-fechar-modal" onclick="document.getElementById('modalPedidos').close()">✕</button>
+            <button type="button" id="fecharPedidos" class="btn-fechar-modal">✕</button>
         </div>
         <p class="tamanho-subtitulo" id="usuarioLogadoInfo"></p>
-        
+
         <div id="listaPedidos" class="lista-pedidos"></div>
-    
+
         <div class="tamanho-acoes">
-            <button type="button" id="btnSairConta" class="tamanho-cancelar" onclick="localStorage.setItem('logado', 'false'); location.reload();">Sair da Conta</button>
-            <button type="button" id="btnFecharPedidos" class="tamanho-confirmar" onclick="document.getElementById('modalPedidos').close()">Fechar</button>
+            <button type="button" id="btnSairConta" class="tamanho-cancelar">Sair da Conta</button>
+            <button type="button" id="btnFecharPedidos" class="tamanho-confirmar">Fechar</button>
         </div>
     </dialog>
-
 
     <a href="#CarrinhoDeCompras">
         <div id="carrinho"></div>
@@ -346,9 +336,6 @@
             <button id="comprar">Comprar</button>
             <button id="limpar">Limpar Carrinho</button>
         </div>
-    </section>
-
-
     </section>
 
     <script src="script.js"></script>

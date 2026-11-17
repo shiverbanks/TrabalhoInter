@@ -1,30 +1,50 @@
-const login = document.getElementById("loginbox")
-const register = document.getElementById("register")
-var tela = true
+const login = document.getElementById("loginbox");
+const register = document.getElementById("register");
+var tela = true;
 
-document.querySelector("#entrar").addEventListener("click", (event) => {
-    event.preventDefault();
-    console.log(tela);
-    if (tela === true) {
-        login.classList.toggle("descer");
+function aplicarTemaSalvo() {
+    const temaSalvo = localStorage.getItem("tema_pizza_calda");
+    const btnTema = document.getElementById("btnTema");
+
+    if (temaSalvo === "escuro") {
+        document.body.classList.add("dark-mode");
+        if (btnTema) btnTema.textContent = "☀️";
+    } else {
+        document.body.classList.remove("dark-mode");
+        if (btnTema) btnTema.textContent = "🌙";
     }
-    else if (tela === false) {
-        register.classList.toggle("descer");
+}
+
+aplicarTemaSalvo();
+
+document.getElementById("btnTema")?.addEventListener("click", () => {
+    const isEscuro = document.body.classList.toggle("dark-mode");
+    localStorage.setItem("tema_pizza_calda", isEscuro ? "escuro" : "claro");
+    const btnTema = document.getElementById("btnTema");
+    if (btnTema) btnTema.textContent = isEscuro ? "☀️" : "🌙";
+});
+
+document.querySelector("#entrar")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (tela === true) {
+        login?.classList.toggle("descer");
+    } else if (tela === false) {
+        register?.classList.toggle("descer");
         tela = true;
     }
 });
 
-document.querySelector("#reg").addEventListener("click", (event) => {
+document.querySelector("#reg")?.addEventListener("click", (event) => {
     event.preventDefault();
-    login.classList.toggle("descer")
-    register.classList.toggle("descer")
+    login?.classList.toggle("descer");
+    register?.classList.toggle("descer");
     tela = false;
 });
 
-document.querySelector("#login").addEventListener("click", (event) => {
+document.querySelector("#login")?.addEventListener("click", (event) => {
     event.preventDefault();
-    login.classList.toggle("descer")
-    register.classList.toggle("descer")
+    login?.classList.toggle("descer");
+    register?.classList.toggle("descer");
     tela = true;
 });
 
@@ -121,9 +141,11 @@ function maskCep() {
     }
 }
 
+var carrinho = JSON.parse(localStorage.getItem("carrinho_pizza_calda") || "[]");
 
-
-var carrinho = [];
+function salvarCarrinho() {
+    localStorage.setItem("carrinho_pizza_calda", JSON.stringify(carrinho));
+}
 
 function formatar(valor) {
     return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -159,6 +181,12 @@ function adicionarProduto(nome, preco, imagem, id, tamanho) {
 
 function atualizarCarrinho() {
     var areaCarrinho = document.getElementById("carCom");
+    var totalEl = document.getElementById("total");
+
+    salvarCarrinho();
+
+    if (!areaCarrinho) return;
+
     var total = 0;
     var html = "";
 
@@ -190,7 +218,7 @@ function atualizarCarrinho() {
     });
 
     areaCarrinho.innerHTML = html;
-    document.getElementById("total").textContent = formatar(total);
+    if (totalEl) totalEl.textContent = formatar(total);
 }
 
 function aumentar(indice) {
@@ -218,13 +246,12 @@ function limparCarrinho() {
     atualizarCarrinho();
 }
 
-document.getElementById("limpar").addEventListener("click", limparCarrinho);
-
+document.getElementById("limpar")?.addEventListener("click", limparCarrinho);
 atualizarCarrinho();
 
 function abrirTamanho(event, idDialog) {
     event.preventDefault();
-    document.getElementById(idDialog).showModal();
+    document.getElementById(idDialog)?.showModal();
 }
 
 document.querySelectorAll("dialog.tamanho-dialog").forEach(dialogo => {
@@ -257,12 +284,11 @@ document.querySelectorAll("dialog.tamanho-dialog").forEach(dialogo => {
         ?.addEventListener("click", () => dialogo.close());
 });
 
-
 function arredondar(valor) {
     return Math.round(valor * 100) / 100;
 }
 
-function baixarJSON(dados, nomeArquivo) {
+function baixarJSON(dados, nomeArquivo = "usuario.json") {
     const blob = new Blob([JSON.stringify(dados, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
 
@@ -277,12 +303,12 @@ function baixarJSON(dados, nomeArquivo) {
 }
 
 function comprar() {
-    if(localStorage.getItem("logado") === "true"){
+    if (localStorage.getItem("logado") === "true") {
         if (carrinho.length === 0) {
             alert("Seu carrinho está vazio.");
             return;
         }
-    
+
         const itens = carrinho.map(item => ({
             idProduto: item.id,
             nome: item.nome,
@@ -291,9 +317,9 @@ function comprar() {
             quantidade: item.quantidade,
             subtotal: arredondar(item.preco * item.quantidade)
         }));
-    
+
         const idPedido = `PED-${Date.now()}`;
-    
+
         const pedido = {
             idPedido: idPedido,
             id_cliente: localStorage.getItem("id_cliente"),
@@ -301,19 +327,22 @@ function comprar() {
             itens: itens,
             total: arredondar(itens.reduce((soma, item) => soma + item.subtotal, 0))
         };
-    
+
+        const historico = JSON.parse(localStorage.getItem("historico_pedidos") || "[]");
+        historico.unshift(pedido);
+        localStorage.setItem("historico_pedidos", JSON.stringify(historico));
+
         baixarJSON(pedido, `${idPedido}.json`);
-    
+
         limparCarrinho();
         location.hash = "#nowhere";
-        alert("Compra confirmada! O arquivo do pedido foi baixado.");
-    }
-    else {
-        alert("Faça Login ou crie um conta para comprar.");
+        alert("Compra confirmada! O pedido foi salvo no seu histórico e o arquivo foi baixado.");
+    } else {
+        alert("Faça Login ou crie uma conta para comprar.");
     }
 }
 
-document.getElementById("comprar").addEventListener("click", comprar);
+document.getElementById("comprar")?.addEventListener("click", comprar);
 
 function mostrarAviso(texto) {
     let area = document.getElementById("avisos");
@@ -337,25 +366,7 @@ function mostrarAviso(texto) {
     }, 2500);
 }
 
-// Sistema de Registro
-
-function baixarJSON(dados, nomeArquivo = 'usuario.json') {
-    const json = JSON.stringify(dados, null, 4);
-
-    const blob = new Blob([json], { type: "application/json" });
-
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = nomeArquivo;
-
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    URL.revokeObjectURL(link.href);
-}
-
-document.querySelector("#registerSubmit").addEventListener("click", (event) => {
+document.querySelector("#registerSubmit")?.addEventListener("click", (event) => {
     event.preventDefault();
 
     const user = {
@@ -366,23 +377,21 @@ document.querySelector("#registerSubmit").addEventListener("click", (event) => {
         end: document.querySelector("#end").value,
         cep: document.querySelector("#cep").value,
         id_cliente: Date.now() + Math.floor(Math.random() * 1000)
-    }
+    };
 
     localStorage.setItem("logado", "true");
     localStorage.setItem("email", user.email);
     localStorage.setItem("telefone", user.tel);
     localStorage.setItem("senha", user.pass);
-    localStorage.setItem("id_cliente", user.id_cliente)
+    localStorage.setItem("id_cliente", user.id_cliente);
 
     perfil();
-    register.classList.toggle("descer");
+    register?.classList.remove("descer");
 
-    baixarJSON(user);
-
-    console.log(user)
+    baixarJSON(user, "usuario.json");
 });
 
-document.querySelector("#loginSubmit").addEventListener("click", (event) => {
+document.querySelector("#loginSubmit")?.addEventListener("click", (event) => {
     event.preventDefault();
 
     const emailDigitado = document.querySelector("#loginMail").value.trim();
@@ -399,7 +408,7 @@ document.querySelector("#loginSubmit").addEventListener("click", (event) => {
     if (emailDigitado === emailSalvo && senhaDigitada === senhaSalva) {
         localStorage.setItem("logado", "true");
         perfil();
-        login.classList.remove("descer");
+        login?.classList.remove("descer");
     } else {
         alert("Email ou senha incorretos.");
     }
@@ -408,16 +417,21 @@ document.querySelector("#loginSubmit").addEventListener("click", (event) => {
 function perfil() {
     const enter = document.getElementById("enter");
     if (enter && localStorage.getItem("logado") === "true") {
+        enter.classList.add("logado");
         enter.innerHTML = `
-            <img src="imgs/profile.png" alt="Perfil" id="perfil" style="cursor: pointer;">
+            <img src="imgs/profile.png" alt="Perfil" id="perfil" title="Meus Pedidos">
         `;
         document.getElementById("perfil").addEventListener("click", abrirHistoricoPedidos);
     }
 }
 
-window.onload = function () {
-    perfil();
-};
+function baixarPedidoHistorico(idPedido) {
+    const todosPedidos = JSON.parse(localStorage.getItem("historico_pedidos") || "[]");
+    const pedidoEncontrado = todosPedidos.find(p => String(p.idPedido) === String(idPedido));
+    if (pedidoEncontrado) {
+        baixarJSON(pedidoEncontrado, `${pedidoEncontrado.idPedido}.json`);
+    }
+}
 
 function abrirHistoricoPedidos() {
     const modal = document.getElementById("modalPedidos");
@@ -431,16 +445,20 @@ function abrirHistoricoPedidos() {
     if (infoUsuario) infoUsuario.textContent = `Conta: ${emailUsuario}`;
 
     const todosPedidos = JSON.parse(localStorage.getItem("historico_pedidos") || "[]");
-    const meusPedidos = todosPedidos.filter(p => String(p.id_cliente) === String(idCliente));
+    const meusPedidos = todosPedidos
+        .filter(p => String(p.id_cliente) === String(idCliente))
+        .slice(0, 3);
 
     if (meusPedidos.length === 0) {
         lista.innerHTML = `<p class="sem-pedidos">Você ainda não realizou nenhum pedido.</p>`;
     } else {
-        lista.innerHTML = meusPedidos.map(pedido => {
+        lista.innerHTML = meusPedidos.map((pedido, idx) => {
             const dataFormatada = new Date(pedido.data).toLocaleString("pt-BR", {
                 dateStyle: "short",
                 timeStyle: "short"
             });
+
+            const etiquetaUltimo = idx === 0 ? `<span class="badge-ultimo">Último pedido</span>` : "";
 
             const itensHtml = pedido.itens.map(item => `
                 <li>
@@ -452,15 +470,23 @@ function abrirHistoricoPedidos() {
             return `
                 <div class="card-pedido-historico">
                     <div class="pedido-topo">
-                        <strong>#${pedido.idPedido}</strong>
+                        <div>
+                            <strong>#${pedido.idPedido}</strong>
+                            ${etiquetaUltimo}
+                        </div>
                         <span>${dataFormatada}</span>
                     </div>
                     <ul class="pedido-itens">
                         ${itensHtml}
                     </ul>
                     <div class="pedido-rodape">
-                        <span>Total pago:</span>
-                        <strong>${formatar(pedido.total)}</strong>
+                        <div>
+                            <span>Total pago: </span>
+                            <strong>${formatar(pedido.total)}</strong>
+                        </div>
+                        <button type="button" class="btn-baixar-json" onclick="baixarPedidoHistorico('${pedido.idPedido}')">
+                            Baixar JSON
+                        </button>
                     </div>
                 </div>
             `;
@@ -472,7 +498,6 @@ function abrirHistoricoPedidos() {
     }
 }
 
-// Fecha o modal de pedidos ou faz logout
 document.addEventListener("click", (e) => {
     const modalPedidos = document.getElementById("modalPedidos");
     if (!modalPedidos || !modalPedidos.open) return;
@@ -492,93 +517,46 @@ document.addEventListener("click", (e) => {
     }
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
+    aplicarTemaSalvo();
     perfil();
+    atualizarCarrinho();
 
-    const modalPedidos = document.getElementById("modalPedidos");
-    if (!modalPedidos) return;
-
-    document.getElementById("fecharPedidos")?.addEventListener("click", () => modalPedidos.close());
-    document.getElementById("btnFecharPedidos")?.addEventListener("click", () => modalPedidos.close());
-
-    modalPedidos.addEventListener("click", (e) => {
-        if (e.target === modalPedidos) modalPedidos.close();
-    });
-
-    document.getElementById("btnSairConta")?.addEventListener("click", () => {
-        localStorage.setItem("logado", "false");
-        modalPedidos.close();
-        location.reload();
-    });
-});
-
-window.addEventListener("load", () => {
-    perfil();
-
-    const modalPedidos = document.getElementById("modalPedidos");
-    if (modalPedidos) {
-        document.getElementById("fecharPedidos")?.addEventListener("click", () => modalPedidos.close());
-        document.getElementById("btnFecharPedidos")?.addEventListener("click", () => modalPedidos.close());
-
-        modalPedidos.addEventListener("click", (e) => {
-            if (e.target === modalPedidos) modalPedidos.close();
-        });
-
-        document.getElementById("btnSairConta")?.addEventListener("click", () => {
-            localStorage.setItem("logado", "false");
-            modalPedidos.close();
-            location.reload();
-        });
-    }
-});
-
-// Eventos dos botões dentro do modal de pedidos
-document.addEventListener("DOMContentLoaded", () => {
-    const modalPedidos = document.getElementById("modalPedidos");
-    if (!modalPedidos) return;
-
-    document.getElementById("fecharPedidos")?.addEventListener("click", () => modalPedidos.close());
-    document.getElementById("btnFecharPedidos")?.addEventListener("click", () => modalPedidos.close());
-
-    // Fecha ao clicar fora do modal
-    modalPedidos.addEventListener("click", (e) => {
-        if (e.target === modalPedidos) modalPedidos.close();
-    });
-
-    // Botão opcional para deslogar
-    document.getElementById("btnSairConta")?.addEventListener("click", () => {
-        localStorage.setItem("logado", "false");
-        modalPedidos.close();
-        location.reload();
-    });
-});
-
-
-window.onload = function () {
-    perfil();
-};
-
-
-document.addEventListener("DOMContentLoaded", () => {
     const searchContainer = document.getElementById("SearchBar");
     const inputPesquisa = document.getElementById("BarraDePesquisa");
     const boxResultados = document.getElementById("resultadosPesquisa");
     const btnBuscar = document.getElementById("btnBuscar");
 
-    if (!inputPesquisa || !boxResultados) {
-        console.warn("Aviso: 'BarraDePesquisa' ou 'resultadosPesquisa' não encontrados neste HTML.");
-        return;
-    }
+    if (!inputPesquisa || !boxResultados) return;
 
     const catalogoPizzas = [
-        { id: 1, nome: "Mussarela", preco: 64.90, imagem: "imgs/LogoPizzaCalda.png" },
-        { id: 2, nome: "Marguerita", preco: 86.90, imagem: "imgs/LogoPizzaCalda.png" },
-        { id: 3, nome: "Portuguesa", preco: 68.90, imagem: "imgs/LogoPizzaCalda.png" },
-        { id: 4, nome: "Presunto", preco: 66.90, imagem: "imgs/LogoPizzaCalda.png" },
-        { id: 5, nome: "Frango", preco: 45.90, imagem: "imgs/LogoPizzaCalda.png" },
-        { id: 6, nome: "Pepperoni", preco: 64.90, imagem: "imgs/LogoPizzaCalda.png" },
-        { id: 7, nome: "Carne", preco: 69.90, imagem: "imgs/LogoPizzaCalda.png" }
+        { id: 1, nome: "Mussarela", tamanho: "Grande", preco: 79.90, imagem: "imgs/PizzaMussarela.png" },
+        { id: 1, nome: "Mussarela", tamanho: "Média", preco: 64.90, imagem: "imgs/PizzaMussarela.png" },
+        { id: 1, nome: "Mussarela", tamanho: "Pequena", preco: 49.90, imagem: "imgs/PizzaMussarela.png" },
+
+        { id: 2, nome: "Marguerita", tamanho: "Grande", preco: 86.90, imagem: "imgs/PizzaMarguerita.png" },
+        { id: 2, nome: "Marguerita", tamanho: "Média", preco: 71.90, imagem: "imgs/PizzaMarguerita.png" },
+        { id: 2, nome: "Marguerita", tamanho: "Pequena", preco: 56.90, imagem: "imgs/PizzaMarguerita.png" },
+
+        { id: 3, nome: "Portuguesa", tamanho: "Grande", preco: 83.90, imagem: "imgs/PizzaPortuguesa.png" },
+        { id: 3, nome: "Portuguesa", tamanho: "Média", preco: 68.90, imagem: "imgs/PizzaPortuguesa.png" },
+        { id: 3, nome: "Portuguesa", tamanho: "Pequena", preco: 53.90, imagem: "imgs/PizzaPortuguesa.png" },
+
+        { id: 4, nome: "Presunto", tamanho: "Grande", preco: 81.90, imagem: "imgs/PizzaPresunto.png" },
+        { id: 4, nome: "Presunto", tamanho: "Média", preco: 66.90, imagem: "imgs/PizzaPresunto.png" },
+        { id: 4, nome: "Presunto", tamanho: "Pequena", preco: 51.90, imagem: "imgs/PizzaPresunto.png" },
+
+        { id: 5, nome: "Frango", tamanho: "Grande", preco: 75.90, imagem: "imgs/PizzaFrango.png" },
+        { id: 5, nome: "Frango", tamanho: "Média", preco: 60.90, imagem: "imgs/PizzaFrango.png" },
+        { id: 5, nome: "Frango", tamanho: "Pequena", preco: 45.90, imagem: "imgs/PizzaFrango.png" },
+
+        { id: 6, nome: "Pepperoni", tamanho: "Grande", preco: 79.90, imagem: "imgs/PizzaPepperoni.png" },
+        { id: 6, nome: "Pepperoni", tamanho: "Média", preco: 64.90, imagem: "imgs/PizzaPepperoni.png" },
+        { id: 6, nome: "Pepperoni", tamanho: "Pequena", preco: 49.90, imagem: "imgs/PizzaPepperoni.png" },
+
+        { id: 7, nome: "Carne", tamanho: "Grande", preco: 79.90, imagem: "imgs/PizzaCarne.png" },
+        { id: 7, nome: "Carne", tamanho: "Média", preco: 64.90, imagem: "imgs/PizzaCarne.png" },
+        { id: 7, nome: "Carne", tamanho: "Pequena", preco: 49.90, imagem: "imgs/PizzaCarne.png" }
     ];
 
     function executarPesquisa() {
@@ -591,7 +569,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const filtradas = catalogoPizzas.filter(pizza =>
-            pizza.nome.toLowerCase().includes(termo)
+            pizza.nome.toLowerCase().includes(termo) ||
+            pizza.tamanho.toLowerCase().includes(termo)
         );
 
         boxResultados.innerHTML = "";
@@ -606,18 +585,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const card = document.createElement("div");
             card.className = "card-pesquisa";
 
-            const precoFormatado = typeof formatar === "function" 
-                ? formatar(pizza.preco) 
-                : `R$ ${pizza.preco.toFixed(2).replace(".", ",")}`;
+            const precoFormatado = formatar(pizza.preco);
 
-            // Botão com a imagem sacola.png
             card.innerHTML = `
                 <img src="${pizza.imagem}" alt="Pizza de ${pizza.nome}">
                 <div class="info-pesquisa">
-                    <strong>${pizza.nome}</strong>
+                    <strong>${pizza.nome} (${pizza.tamanho})</strong>
                     <span>${precoFormatado}</span>
                 </div>
-                <button type="button" class="btn-add-pesquisa" aria-label="Adicionar ${pizza.nome} ao carrinho">
+                <button type="button" class="btn-add-pesquisa" aria-label="Adicionar ${pizza.nome} ${pizza.tamanho} ao carrinho">
                     <img src="imgs/sacola.png" alt="Adicionar à sacola">
                 </button>
             `;
@@ -627,11 +603,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
                 e.stopPropagation();
 
-                if (typeof adicionarProduto === "function") {
-                    adicionarProduto(pizza.nome, pizza.preco, pizza.imagem, pizza.id, null);
-                } else {
-                    alert(`${pizza.nome} adicionada!`);
-                }
+                adicionarProduto(pizza.nome, pizza.preco, pizza.imagem, pizza.id, pizza.tamanho);
 
                 boxResultados.classList.remove("ativo");
                 inputPesquisa.value = "";
@@ -658,7 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.getElementById("enbutton").addEventListener("click", (event) => {
+document.getElementById("enbutton")?.addEventListener("click", (event) => {
     event.preventDefault();
 
     if (localStorage.getItem("logado") !== "true") {
